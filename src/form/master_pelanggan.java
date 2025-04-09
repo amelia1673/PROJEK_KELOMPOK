@@ -44,6 +44,7 @@ public class master_pelanggan extends javax.swing.JFrame {
         nama_pelanggan.setText("");
         hp_pelanggan.setText("");
         almt_pelanggan.setText("");
+        jk_pelanggan.setSelectedIndex(0);
         tanggal_pelanggan.setDate(null);
     }
 
