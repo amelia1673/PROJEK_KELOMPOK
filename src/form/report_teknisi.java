@@ -13,6 +13,7 @@ import koneksi.koneksi;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.HashMap;
 
 /**
  * /**
@@ -209,11 +210,34 @@ public class report_teknisi extends javax.swing.JFrame {
 
     private void bprint_tekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_tekActionPerformed
         try {
+            String loginId = UserID.getUserLogin();
+            String loginTeknisi = "";
+
+            // Ambil nama teknisi dari database berdasarkan ID yang login
+            String sqlNama = "SELECT nama FROM tb_login WHERE id_teknisi = ?";
+            PreparedStatement teknama = conn.prepareStatement(sqlNama);
+            teknama.setString(1, loginId);
+            ResultSet rsNama = teknama.executeQuery();
+
+            if (rsNama.next()) {
+                loginTeknisi = rsNama.getString("nama");
+            } else {
+                loginTeknisi = "Tidak Diketahui"; // Atau handle jika nama tidak ditemukan
+            }
+
             String reportPath = "/report/rep_teknisi.jasper";
-            JasperPrint jp_tek = JasperFillManager.fillReport(getClass().getResourceAsStream(reportPath), null, koneksi.koneksi);
+            HashMap parameters = new HashMap();
+            parameters.put("dikeluarkanTek", loginTeknisi); // Kirim nama sebagai parameter
+
+            JasperPrint jp_tek = JasperFillManager.fillReport(getClass().getResourceAsStream(reportPath), parameters, conn); // Gunakan koneksi conn yang sudah ada
             JasperViewer.viewReport(jp_tek, false);
+
+            rsNama.close();
+            teknama.close();
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e);
+            e.printStackTrace(); // Penting untuk melihat detail error
         }
     }//GEN-LAST:event_bprint_tekActionPerformed
 
