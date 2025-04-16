@@ -73,6 +73,7 @@ public class master_pelanggan extends javax.swing.JFrame {
                         + "OR nama_pelanggan LIKE '%" + cariitem + "%' "
                         + "OR hp_pelanggan LIKE '%" + cariitem + "%' "
                         + "OR jk_pelanggan LIKE '%" + cariitem + "%' "
+                        + "OR almt_pelanggan LIKE '%" + cariitem + "%' "
                         + "OR tanggal_pelanggan LIKE '%" + cariitem + "%' "
                         + "ORDER BY id_pelanggan ASC";
             }
