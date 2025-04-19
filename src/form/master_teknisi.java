@@ -344,9 +344,9 @@ public class master_teknisi extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(knf_sandi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -517,7 +517,7 @@ public class master_teknisi extends javax.swing.JFrame {
         String hpText = hp.getText().trim();
         String alamatText = alamat.getText().trim();
         String jenis = jenkel.getSelectedItem().toString();
-        if (id_teknisiText.isEmpty() || sandiText.isEmpty() || knfSandiText.isEmpty() || namaText.isEmpty() || hpText.isEmpty()) {
+        if (id_teknisiText.isEmpty() || sandiText.isEmpty() || knfSandiText.isEmpty() || namaText.isEmpty() || hpText.isEmpty() || alamatText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Semua kolom harus diisi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -537,7 +537,7 @@ public class master_teknisi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Konfirmasi sandi tidak sama dengan sandi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String sql = "insert into tb_login values(?,?,?,?,?)";
+        String sql = "insert into tb_login values(?,?,?,?,?,?)";
         try {
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.setString(1, id_teknisiText);
@@ -591,7 +591,7 @@ public class master_teknisi extends javax.swing.JFrame {
         String hpText = hp.getText().trim();
         String alamatText = alamat.getText().trim();
         String jenis = jenkel.getSelectedItem().toString();
-        if (id_teknisiText.isEmpty() || sandiText.isEmpty() || knfSandiText.isEmpty() || namaText.isEmpty() || hpText.isEmpty()) {
+        if (id_teknisiText.isEmpty() || sandiText.isEmpty() || knfSandiText.isEmpty() || namaText.isEmpty() || hpText.isEmpty() || alamatText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Semua kolom harus diisi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
         }
