@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75c4855b-589a-4322-9cf4-c7e8639a8a43">
-	<property name="ireport.zoom" value="1.3310000000000146"/>
+	<property name="ireport.zoom" value="1.3310000000000162"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
@@ -242,7 +242,7 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="117" splitType="Stretch">
+		<band height="140" splitType="Stretch">
 			<textField>
 				<reportElement x="399" y="64" width="154" height="16" uuid="49866f96-8eff-42c3-b4f8-6f03a445f777"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">

@@ -31,6 +31,8 @@ public class master_teknisi extends javax.swing.JFrame {
         kosong();
         aktif();
         datatable();
+        alamat.setLineWrap(true);
+        alamat.setWrapStyleWord(true);
     }
 
     protected void aktif() {
@@ -43,10 +45,11 @@ public class master_teknisi extends javax.swing.JFrame {
         knf_sandi.setText("");
         nama.setText("");
         hp.setText("");
+        alamat.setText("");
     }
 
     protected void datatable() {
-        Object[] Baris = {"ID Teknisi", "Password", "Nama", "Jenis Kelamin", "No Handphone"};
+        Object[] Baris = {"ID Teknisi", "Password", "Nama", "Jenis Kelamin", "No Handphone", "Alamat"};
         tabmode = new DefaultTableModel(null, Baris);
         String cariitem = cari_teknisi.getText();
 
@@ -55,6 +58,7 @@ public class master_teknisi extends javax.swing.JFrame {
                     + "OR nama LIKE '%" + cariitem + "%' "
                     + "OR jenkel LIKE '%" + cariitem + "%' "
                     + "OR hp LIKE '%" + cariitem + "%' "
+                    + "OR alamat LIKE '%" + cariitem + "%' "
                     + "ORDER BY id_teknisi ASC";
             Statement stat = conn.createStatement();
             ResultSet hasil = stat.executeQuery(sql);
@@ -64,7 +68,8 @@ public class master_teknisi extends javax.swing.JFrame {
                     hasil.getString(2),
                     hasil.getString(3),
                     hasil.getString(4),
-                    hasil.getString(5),});
+                    hasil.getString(5),
+                    hasil.getString(6),});
             }
             tblteknisi.setModel(tabmode);
         } catch (Exception e) {
@@ -106,6 +111,9 @@ public class master_teknisi extends javax.swing.JFrame {
         bhapus_tek = new javax.swing.JButton();
         bbatal = new javax.swing.JButton();
         bkeluar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        alamat = new javax.swing.JTextArea();
         jpanel_kiri = new javax.swing.JPanel();
         jpanel_kanan = new javax.swing.JPanel();
 
@@ -266,6 +274,14 @@ public class master_teknisi extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("Alamat :");
+
+        alamat.setColumns(20);
+        alamat.setRows(5);
+        jScrollPane2.setViewportView(alamat);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -275,7 +291,9 @@ public class master_teknisi extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -292,17 +310,17 @@ public class master_teknisi extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(id_teknisi, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                             .addComponent(sandi)
-                            .addComponent(knf_sandi))
+                            .addComponent(knf_sandi)
+                            .addComponent(nama, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jenkel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jenkel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hp, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                            .addComponent(nama))))
+                            .addComponent(jScrollPane2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -312,21 +330,29 @@ public class master_teknisi extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id_teknisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sandi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jenkel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(knf_sandi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sandi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(knf_sandi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jenkel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bubah_tek)
                     .addComponent(bhapus_tek)
@@ -394,11 +420,12 @@ public class master_teknisi extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpanel_kiri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpanel_kanan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jpanel_kiri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jpanel_kanan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cari_teknisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcari)
@@ -429,6 +456,7 @@ public class master_teknisi extends javax.swing.JFrame {
         String c = tblteknisi.getValueAt(bar, 2).toString();
         String d = tblteknisi.getValueAt(bar, 3).toString();
         String e = tblteknisi.getValueAt(bar, 4).toString();
+        String f = tblteknisi.getValueAt(bar, 5).toString();
 
         id_teknisi.setText(a);
         sandi.setText(b);
@@ -436,6 +464,7 @@ public class master_teknisi extends javax.swing.JFrame {
         nama.setText(c);
         jenkel.setSelectedItem(d);
         hp.setText(e);
+        alamat.setText(f);
     }//GEN-LAST:event_tblteknisiMouseClicked
 
     private void cari_teknisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cari_teknisiActionPerformed
@@ -486,6 +515,8 @@ public class master_teknisi extends javax.swing.JFrame {
         String knfSandiText = knf_sandi.getText().trim();
         String namaText = nama.getText().trim();
         String hpText = hp.getText().trim();
+        String alamatText = alamat.getText().trim();
+        String jenis = jenkel.getSelectedItem().toString();
         if (id_teknisiText.isEmpty() || sandiText.isEmpty() || knfSandiText.isEmpty() || namaText.isEmpty() || hpText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Semua kolom harus diisi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
@@ -506,21 +537,20 @@ public class master_teknisi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Konfirmasi sandi tidak sama dengan sandi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        String jenis = jenkel.getSelectedItem().toString();
         String sql = "insert into tb_login values(?,?,?,?,?)";
         try {
             PreparedStatement stat = conn.prepareStatement(sql);
-            stat.setString(1, id_teknisi.getText());
-            stat.setString(2, sandi.getText());
-            stat.setString(3, nama.getText());
+            stat.setString(1, id_teknisiText);
+            stat.setString(2, sandiText);
+            stat.setString(3, namaText);
             stat.setString(4, jenis);
-            stat.setString(5, hp.getText());
+            stat.setString(5, hpText);
+            stat.setString(6, alamatText);
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
             kosong();
-            id_teknisi.requestFocus();
+            aktif();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Data gagal disimpan!" + e);
         }
@@ -539,13 +569,13 @@ public class master_teknisi extends javax.swing.JFrame {
         }
         int ok = JOptionPane.showConfirmDialog(null, "Apakah benar ingin dihapus?", "Peringatan!", JOptionPane.YES_NO_OPTION);
         if (ok == 0) {
-            String sql = "delete from tb_login where id_teknisi='" + id_teknisi.getText() + "'";
+            String sql = "delete from tb_login where id_teknisi='" + idTeknisi + "'";
             try {
                 PreparedStatement stat = conn.prepareStatement(sql);
                 stat.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
                 kosong();
-                id_teknisi.requestFocus();
+                aktif();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Data gagal dihapus" + e);
             }
@@ -559,6 +589,8 @@ public class master_teknisi extends javax.swing.JFrame {
         String knfSandiText = knf_sandi.getText().trim();
         String namaText = nama.getText().trim();
         String hpText = hp.getText().trim();
+        String alamatText = alamat.getText().trim();
+        String jenis = jenkel.getSelectedItem().toString();
         if (id_teknisiText.isEmpty() || sandiText.isEmpty() || knfSandiText.isEmpty() || namaText.isEmpty() || hpText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Semua kolom harus diisi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
@@ -576,20 +608,21 @@ public class master_teknisi extends javax.swing.JFrame {
             return;
         }
 
-        String jenis = jenkel.getSelectedItem().toString();
-        String sql = "UPDATE tb_login SET sandi=?, nama=?, jenkel=?, hp=? WHERE id_teknisi=?"; // Perhatikan penggunaan UPDATE
+        
+        String sql = "UPDATE tb_login SET sandi=?, nama=?, jenkel=?, hp=?, alamat=? WHERE id_teknisi=?"; // Perhatikan penggunaan UPDATE
         try {
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.setString(1, sandiText);
-            stat.setString(2, nama.getText());
+            stat.setString(2, namaText);
             stat.setString(3, jenis);
-            stat.setString(4, hp.getText());
-            stat.setString(5, id_teknisiText); // WHERE clause
+            stat.setString(4, hpText);
+            stat.setString(5, alamatText);
+            stat.setString(6, id_teknisiText); // WHERE clause
             int rowsUpdated = stat.executeUpdate();
             if (rowsUpdated > 0) {
                 JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
                 kosong();
-                id_teknisi.requestFocus();
+                aktif();
             } else {
                 JOptionPane.showMessageDialog(null, "Data gagal diubah. ID Teknisi tidak ditemukan.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
@@ -653,6 +686,7 @@ public class master_teknisi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea alamat;
     private javax.swing.JButton bbatal;
     private javax.swing.JButton bcari;
     private javax.swing.JButton bhapus_tek;
@@ -670,9 +704,11 @@ public class master_teknisi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jenkel;
     private javax.swing.JPanel jpanel_kanan;
     private javax.swing.JPanel jpanel_kiri;

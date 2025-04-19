@@ -35,7 +35,7 @@ public class report_teknisi extends javax.swing.JFrame {
     }
 
     protected void datatable() {
-        Object[] Baris = {"ID Teknisi", "Password", "Nama", "Jenis Kelamin", "No Handphone"};
+        Object[] Baris = {"ID Teknisi", "Password", "Nama", "Jenis Kelamin", "No Handphone","Alamat"};
         tabmode = new DefaultTableModel(null, Baris);
         String cariitem = cari_teknisi.getText();
 
@@ -44,6 +44,7 @@ public class report_teknisi extends javax.swing.JFrame {
                     + "OR nama LIKE '%" + cariitem + "%' "
                     + "OR jenkel LIKE '%" + cariitem + "%' "
                     + "OR hp LIKE '%" + cariitem + "%' "
+                    + "OR alamat LIKE '%" + cariitem + "%' "
                     + "ORDER BY id_teknisi ASC";
             Statement stat = conn.createStatement();
             ResultSet hasil = stat.executeQuery(sql);
@@ -53,7 +54,8 @@ public class report_teknisi extends javax.swing.JFrame {
                     hasil.getString(2),
                     hasil.getString(3),
                     hasil.getString(4),
-                    hasil.getString(5),});
+                    hasil.getString(5),
+                    hasil.getString(6),});
             }
             tblteknisi.setModel(tabmode);
         } catch (Exception e) {
