@@ -110,7 +110,7 @@ public class menu_utama extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGap(0, 421, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -135,7 +135,7 @@ public class menu_utama extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(tanggal_label, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label_selamatdatang, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(label_selamatdatang, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,7 +149,8 @@ public class menu_utama extends javax.swing.JFrame {
         rep_teknisi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rep_teknisi.setName(""); // NOI18N
 
-        jMenu1.setText("| Master |");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/teknisi.png"))); // NOI18N
+        jMenu1.setText("Master |");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -211,7 +212,8 @@ public class menu_utama extends javax.swing.JFrame {
 
         rep_teknisi.add(jMenu1);
 
-        jMenu2.setText("| Transaksi |");
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/transaction.png"))); // NOI18N
+        jMenu2.setText("Transaksi |");
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -229,7 +231,8 @@ public class menu_utama extends javax.swing.JFrame {
 
         rep_teknisi.add(jMenu2);
 
-        jMenu3.setText("| Report |");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
+        jMenu3.setText("Report |");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -290,7 +293,8 @@ public class menu_utama extends javax.swing.JFrame {
 
         rep_teknisi.add(jMenu3);
 
-        keluar.setText("| Keluar |");
+        keluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/exit.png"))); // NOI18N
+        keluar.setText("Keluar |");
         keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         keluar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         keluar.addActionListener(new java.awt.event.ActionListener() {
