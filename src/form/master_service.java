@@ -5,11 +5,20 @@
  */
 package form;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.KeyEvent;
+import koneksi.koneksi;
+
 /**
  *
  * @author Ahmad Nur Latif P
  */
 public class master_service extends javax.swing.JFrame {
+
+    private Connection conn = new koneksi().connect();
+    private DefaultTableModel tabmode;
 
     /**
      * Creates new form master_service
@@ -17,6 +26,43 @@ public class master_service extends javax.swing.JFrame {
     public master_service() {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        kosong();
+        aktif();
+        datatable();
+    }
+
+    protected void aktif() {
+        id_service.requestFocus();
+    }
+
+    protected void kosong() {
+        id_service.setText("");
+        jenis_service.setText("");
+        biaya_service.setText("");
+    }
+
+    protected void datatable() {
+        Object[] Baris = {"ID Service", "Jenis Service", "Biaya Service (Rp)"};
+        tabmode = new DefaultTableModel(null, Baris);
+        String cariitem = txtcari.getText();
+
+        try {
+            String sql = "SELECT * FROM tb_service WHERE id_service LIKE '%" + cariitem + "%' "
+                    + "OR jenis_service LIKE '%" + cariitem + "%' "
+                    + "OR biaya_service LIKE '%" + cariitem + "%' "
+                    + "ORDER BY id_service ASC";
+            Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()) {
+                tabmode.addRow(new Object[]{
+                    hasil.getString(1),
+                    hasil.getString(2),
+                    hasil.getString(3),});
+            }
+            table_service.setModel(tabmode);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "data gagal dipanggil" + e);
+        }
     }
 
     /**
@@ -28,21 +74,405 @@ public class master_service extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        id_service = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        biaya_service = new javax.swing.JTextField();
+        bsimpan = new javax.swing.JButton();
+        bubah = new javax.swing.JButton();
+        bhapus = new javax.swing.JButton();
+        bbatal = new javax.swing.JButton();
+        bkeluar = new javax.swing.JButton();
+        jenis_service = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_service = new javax.swing.JTable();
+        txtcari = new javax.swing.JTextField();
+        cari_service = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("JENIS SERVICE");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("ID Service :");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("Jenis Service :");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Biaya Service (Rp) :");
+
+        bsimpan.setText("SIMPAN");
+        bsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bsimpanActionPerformed(evt);
+            }
+        });
+
+        bubah.setText("UBAH");
+        bubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bubahActionPerformed(evt);
+            }
+        });
+
+        bhapus.setText("HAPUS");
+        bhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhapusActionPerformed(evt);
+            }
+        });
+
+        bbatal.setText("BATAL");
+        bbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bbatalActionPerformed(evt);
+            }
+        });
+
+        bkeluar.setText("KELUAR");
+        bkeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bkeluarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(bsimpan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bubah)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bhapus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bbatal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bkeluar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(id_service, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(biaya_service)))
+                    .addComponent(jenis_service, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(id_service, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(biaya_service, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jenis_service, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bsimpan)
+                    .addComponent(bubah)
+                    .addComponent(bhapus)
+                    .addComponent(bbatal)
+                    .addComponent(bkeluar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel6.setBackground(new java.awt.Color(102, 102, 255));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel5.setBackground(new java.awt.Color(102, 102, 255));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        table_service.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        table_service.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_serviceMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table_service);
+
+        txtcari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcariKeyPressed(evt);
+            }
+        });
+
+        cari_service.setText("CARI");
+        cari_service.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cari_serviceActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cari_service)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cari_service))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private boolean idTerdaftar(String id_service) {
+        String sql = "SELECT id_service FROM tb_service WHERE id_service = ?";
+        try (PreparedStatement stat = conn.prepareStatement(sql)) {
+            stat.setString(1, id_service);
+            ResultSet hasil = stat.executeQuery();
+            return hasil.next();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Gagal memeriksa Kode Barang: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
+    private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
+    String idText = id_service.getText().trim(); // Trim untuk menghapus spasi di awal dan akhir
+        String jenisText = jenis_service.getText().trim();
+        String biayaText = biaya_service.getText().trim();
+        if (idText.isEmpty() || jenisText.isEmpty() || biayaText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Semua kolom harus diisi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (idText.length() > 10) {
+            JOptionPane.showMessageDialog(this, "ID Service harus terdiri dari 10 digit.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (idTerdaftar(idText)) {
+            JOptionPane.showMessageDialog(this, "ID Service sudah terdaftar.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String sql = "insert into tb_service values(?,?,?)";
+        try {
+            PreparedStatement stat = conn.prepareStatement(sql);
+            stat.setString(1, idText);
+            stat.setString(2, jenisText);
+            stat.setString(3, biayaText);
+
+            stat.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
+            kosong();
+            aktif();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Data gagal disimpan!" + e);
+        }
+        datatable();
+    }//GEN-LAST:event_bsimpanActionPerformed
+
+    private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
+    String idText = id_service.getText().trim(); // Trim untuk menghapus spasi di awal dan akhir
+        String jenisText = jenis_service.getText().trim();
+        String biayaText = biaya_service.getText().trim();
+        if (idText.isEmpty() || jenisText.isEmpty() || biayaText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Semua kolom harus diisi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (idText.length() > 10) {
+            JOptionPane.showMessageDialog(this, "ID Service harus terdiri dari 10 digit.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String sql = "UPDATE tb_service SET jenis_service=?, biaya_service=? WHERE id_service=?"; // Perhatikan penggunaan UPDATE
+        try {
+            PreparedStatement stat = conn.prepareStatement(sql);
+            stat.setString(1, jenisText);
+            stat.setString(2, biayaText);
+            stat.setString(3, idText); // WHERE clause
+            int rowsUpdated = stat.executeUpdate();
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
+                kosong();
+                aktif();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data gagal diubah. ID Service tidak ditemukan.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Data gagal diubah!" + e, "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
+        datatable();
+    }//GEN-LAST:event_bubahActionPerformed
+
+    private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
+    String idText = id_service.getText().trim();
+        if (idText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Kode Barang belum diisi.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (!idTerdaftar(idText)) {
+            JOptionPane.showMessageDialog(this, "Kode Barang tidak ditemukan.", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int ok = JOptionPane.showConfirmDialog(null, "Apakah benar ingin dihapus?", "Peringatan!", JOptionPane.YES_NO_OPTION);
+        if (ok == 0) {
+            String sql = "delete from tb_service where id_service='" + idText + "'";
+            try {
+                PreparedStatement stat = conn.prepareStatement(sql);
+                stat.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+                kosong();
+                aktif();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Data gagal dihapus" + e);
+            }
+            datatable();
+        }
+    }//GEN-LAST:event_bhapusActionPerformed
+
+    private void bbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbatalActionPerformed
+     kosong();
+        datatable();
+    }//GEN-LAST:event_bbatalActionPerformed
+
+    private void bkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkeluarActionPerformed
+    dispose();
+    }//GEN-LAST:event_bkeluarActionPerformed
+
+    private void table_serviceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_serviceMouseClicked
+    int bar = table_service.getSelectedRow();
+        String a = tabmode.getValueAt(bar, 0).toString();
+        String b = tabmode.getValueAt(bar, 1).toString();
+        String c = tabmode.getValueAt(bar, 2).toString();
+
+        id_service.setText(a);
+        jenis_service.setText(b);
+        biaya_service.setText(c);
+    }//GEN-LAST:event_table_serviceMouseClicked
+
+    private void txtcariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcariKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            datatable();
+        }
+    }//GEN-LAST:event_txtcariKeyPressed
+
+    private void cari_serviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cari_serviceActionPerformed
+    datatable();
+    }//GEN-LAST:event_cari_serviceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +510,26 @@ public class master_service extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bbatal;
+    private javax.swing.JButton bhapus;
+    private javax.swing.JTextField biaya_service;
+    private javax.swing.JButton bkeluar;
+    private javax.swing.JButton bsimpan;
+    private javax.swing.JButton bubah;
+    private javax.swing.JButton cari_service;
+    private javax.swing.JTextField id_service;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jenis_service;
+    private javax.swing.JTable table_service;
+    private javax.swing.JTextField txtcari;
     // End of variables declaration//GEN-END:variables
 }
