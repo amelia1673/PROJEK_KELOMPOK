@@ -5,6 +5,8 @@
  */
 package form;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
@@ -72,6 +74,11 @@ public class login extends javax.swing.JFrame {
                 bregisActionPerformed(evt);
             }
         });
+        bregis.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bregisKeyPressed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,6 +94,11 @@ public class login extends javax.swing.JFrame {
         sandi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sandiActionPerformed(evt);
+            }
+        });
+        sandi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sandiKeyPressed(evt);
             }
         });
 
@@ -184,7 +196,9 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bloginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bloginKeyPressed
-
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            bloginActionPerformed(new ActionEvent(sandi, ActionEvent.ACTION_PERFORMED, "Enter"));
+        }
     }//GEN-LAST:event_bloginKeyPressed
 
     private void bloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloginActionPerformed
@@ -226,6 +240,18 @@ public class login extends javax.swing.JFrame {
         rf.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_bregisActionPerformed
+
+    private void sandiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sandiKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            bloginActionPerformed(new ActionEvent(sandi, ActionEvent.ACTION_PERFORMED, "Enter"));
+        }
+    }//GEN-LAST:event_sandiKeyPressed
+
+    private void bregisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bregisKeyPressed
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            bregisActionPerformed(new ActionEvent(sandi, ActionEvent.ACTION_PERFORMED, "EnterRegister"));
+        }
+    }//GEN-LAST:event_bregisKeyPressed
 
     /**
      * @param args the command line arguments
