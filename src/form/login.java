@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package form;
-
+import java.sql.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.sql.*;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
 import java.sql.Connection;
@@ -210,11 +209,12 @@ public class login extends javax.swing.JFrame {
             ResultSet hasil = stat.executeQuery();
 
             if (hasil.next()) {
-                UserID.setUserLogin(hasil.getString("id_teknisi"));
+                UserID.setIdTeknisi(hasil.getString("id_teknisi"));
+                UserID.setNamaTeknisi(hasil.getString("nama"));
                 JOptionPane.showMessageDialog(null, "Login Berhasil");
                 this.setVisible(false);
                 menu_utama sett = new menu_utama();
-                sett.setNama(id_teknisi.getText(), sandi.getText()); // Kirim id_teknisi dan sandi untuk label di form menu utama
+                sett.setAkun(id_teknisi.getText(), sandi.getText()); // Kirim id_teknisi dan sandi untuk label di form menu utama
                 sett.setVisible(true);
                 sett.setLocationRelativeTo(null);
             } else {

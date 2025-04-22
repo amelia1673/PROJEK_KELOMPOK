@@ -212,7 +212,7 @@ public class report_teknisi extends javax.swing.JFrame {
 
     private void bprint_tekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_tekActionPerformed
         try {
-            String loginId = UserID.getUserLogin();
+            String loginId = UserID.getIdTeknisi();
             String loginTeknisi = "";
 
             // Ambil nama teknisi dari database berdasarkan ID yang login

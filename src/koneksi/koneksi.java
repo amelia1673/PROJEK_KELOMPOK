@@ -15,6 +15,7 @@ public Connection connect(){
     try{
         koneksi=DriverManager.getConnection(url,"root","");
         System.out.println("berhasil koneksi database");
+        System.out.println("_________________________");
     }
     catch (SQLException ex){
         System.out.println("gagal koneksi database"+ex);
