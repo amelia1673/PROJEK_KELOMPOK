@@ -6,6 +6,7 @@ public static Connection koneksi;
 public Connection connect(){
     try{
         Class.forName("com.mysql.jdbc.Driver");
+                System.out.println("_________________________");
         System.out.println("berhasil connect");
     }
     catch(ClassNotFoundException ex){

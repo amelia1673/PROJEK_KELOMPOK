@@ -240,7 +240,7 @@ public class master_pelanggan extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Tanggal Pembuatan :");
+        jLabel4.setText("Tanggal Daftar :");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
